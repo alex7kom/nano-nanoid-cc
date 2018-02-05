@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>Nano ID Collision Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <style>
+      .github-fork-ribbon:before {
+        background-color: #090;
+      }
+    </style>
+  <style>/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{-webkit-box-sizing:content-box;box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{-webkit-box-sizing:border-box;box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{-webkit-box-sizing:border-box;box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}[hidden],template{display:none}.App{font-family:Helvetica,Arial,sans-serif;width:80%;min-width:300px;max-width:800px;margin:30px auto}.App-title{font-size:34px}.App-intro{font-size:16px;line-height:22px}.App a{color:#0c79e8}.Form{padding:15px;background:-webkit-gradient(linear,left top,left bottom,from(#e0f5fc),color-stop(40%,#e0f5fc),to(#fff));background:linear-gradient(180deg,#e0f5fc 0,#e0f5fc 40%,#fff)}.Form-label{display:block;margin-bottom:15px;line-height:1.7em}.Form-input{font-size:16px;padding:7px;border:1px solid #ccc}.Form-alphabet{width:90%}.Form-size{width:50px}.Form-size,.Form-speed{text-align:right;margin-left:5px}.Form-speed{width:70px}.Form-error{color:coral;margin-bottom:15px}.Result{padding:15px;font-size:24px;line-height:40px}.Result strong{font-size:34px}.Example{margin-top:30px}.Example-code{background-color:#fdf6e3;display:block;overflow-x:scroll;width:100%;padding:15px;white-space:nowrap}.hl-op{color:#859900}.hl-func{color:#268bd2}.hl-comment{color:#93a1a1}.hl-keyword{font-weight:700}.hl-str{color:#2aa198}.hl-num{color:#d33682}.Footer{margin-top:30px;font-size:16px}.Footer-more-list{padding-left:30px;line-height:22px}.Footer-credits{margin-top:50px}</style></head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <a class="github-fork-ribbon" href="https://github.com/Alex7Kom/nano-nanoid-cc" title="Fork me on GitHub">Fork me on GitHub</a>
+    <div id="root">
+      <div class="App">
+        <header class="App-header">
+          <h1 class="App-title">
+            <a href="https://github.com/ai/nanoid">Nano ID</a> Collision Calculator</h1>
+        </header>
+        <div class="App-intro">
+          <p>Nano ID is a unique string ID generator for JavaScript and
+            <a href="https://github.com/ai/nanoid#other-programming-languages">other languages</a>.</p>
+          <p>As any other ID generator Nano ID has a probability of generating the same ID twice, i.e. producing a collision.</p>
+          <p>The purpose of this calculator is to find ID length for chosen alphabet safe enough to avoid collisions.</p>
+        </div>
+        <div class="Form">
+          <label for="Form-alphabet" class="Form-label">Alphabet:
+            <br>
+            <textarea class="Form-input Form-alphabet" id="Form-alphabet" type="text"></textarea>
+          </label>
+          <div class="Form-error" id="Form-error-alphabet"></div>
+          <label for="Form-size" class="Form-label">The length of ID:
+            <input class="Form-input Form-size" id="Form-size" type="text"> symbols</label>
+          <div class="Form-error" id="Form-error-size"></div>
+          <label for="Form-speed" class="Form-label">The speed of ID generation:
+            <input class="Form-input Form-speed" id="Form-speed" type="text"> IDs per hour</label>
+          <div class="Form-error" id="Form-error-speed"></div>
+        </div>
+        <div class="Result" id="Result-wrapper">
+          <strong id="Result"></strong> of work are needed in order to have a&nbsp;1% probability of at least one collision.</div>
+        <div class="Example">
+          <h3>Example of this usage</h3>
+          <code class="Example-code" id="Example-code"></code>
+        </div>
+        <div class="Footer">
+          <div>
+            <h3>Learn more</h3>
+            <ul class="Footer-more-list">
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Birthday_attack">Birthday attack</a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier#Collisions">UUID#Collisions</a>
+              </li>
+            </ul>
+          </div>
+          <div class="Footer-credits">
+            <p>This calculator is made by
+              <a href="https://github.com/Alex7Kom">Alexey Komarov</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script>!function(e){var n={};function t(r){if(n[r])return n[r].exports;var a=n[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,t),a.l=!0,a.exports}t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p="",t(t.s=1)}([function(e,n){e.exports={alphabet:"_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",size:21}},function(e,n,t){t(2),t(3);var r=t(0),a=t(4),o=t(6),l=document.getElementById("Form-size"),i=document.getElementById("Form-alphabet"),s=document.getElementById("Form-speed"),u=document.getElementById("Form-error-size"),p=document.getElementById("Form-error-alphabet"),c=document.getElementById("Form-error-speed"),h=document.getElementById("Result-wrapper"),m=document.getElementById("Result"),d=document.getElementById("Example-code");function f(){var e={size:Number(l.value),alphabet:i.value,speed:Number(s.value),probability:1};!function(e){if(h.style.display="none",e.alphabet.length<2)return;if(e.probability<=0||e.probability>100)return;if(e.size<2||e.speed<1)return;h.style.display="block";var n=Math.log(e.alphabet.length)/Math.LN2,t=e.probability/100,r=Math.sqrt(2*Math.pow(2,n*e.size)*Math.log(1/(1-t))),a=e.speed/3600,l=Math.floor(r/a),i=o(l);m.innerHTML="~"+i}(e),function(e){if(d.style.display="none",e.alphabet.length<2||e.size<=1)return;d.style.display="block",d.innerHTML=a(e)}(e),function(e){u.innerHTML="",p.innerHTML="",c.innerHTML="",e.alphabet.length<2&&(p.innerHTML="The length of the alphabet should be 2 or more");e.alphabet.length>256&&(p.innerHTML="An alphabet with than 256 symbols is not secure due to algorithm limitations");e.size<2&&(u.innerHTML="The length of the ID should be 2 or more");e.speed<1&&(c.innerHTML="The speed should be 1 or more")}(e)}l.value=r.size,i.value=r.alphabet,s.value=1e3,["input","change"].forEach(function(e){[l,i,s].forEach(function(n){n.addEventListener(e,f,!1)})}),f()},function(e,n){},function(e,n){},function(e,n,t){var r=t(5),a=t(0),o=window.crypto||window.msCrypto,l=o?function(e){return o.getRandomValues(new Uint8Array(e))}:function(e){return new Array(e).fill(0).map(function(){return Math.floor(256*Math.random())})};e.exports=function(e){var n=e.size===a.size?"":e.size,t=r(l,e.alphabet,e.size);return(e.alphabet===a.alphabet?"var nanoid = require('nanoid');<br /><br />model.id = nanoid("+n+'); // => "'+t+'"':"var generate = require('nanoid/generate');<br />var alphabet = '"+e.alphabet+"';<br /><br />model.id = generate(alphabet, "+e.size+'); // => "'+t+'"').replace(/ = /g,' <span class="hl-op">=</span> ').replace(/\b(\S+?)\(/g,'<span class="hl-func">$1</span>(').replace(/(\/\/.+?)$/gm,'<span class="hl-comment">$1</span>').replace(/\b(var)\b/g,'<span class="hl-keyword">$1</span>').replace(/('.+?')/g,'<span class="hl-str">$1</span>').replace(/\b(\d+)\b/g,'<span class="hl-num">$1</span>')}},function(e,n){e.exports=function(e,n,t){for(var r=(2<<Math.log(n.length-1)/Math.LN2)-1,a=Math.ceil(1.6*r*t/n.length),o="";;)for(var l=e(a),i=0;i<a;i++){var s=l[i]&r;if(n[s]&&(o+=n[s]).length===t)return o}}},function(e,n){var t=[{n:["second","seconds"],m:1},{n:["minute","minutes"],m:60},{n:["hour","hours"],m:60},{n:["day","days"],m:24},{n:["month","months"],m:30.5},{n:["year","years"],m:12},{n:["century","centuries"],m:100},{n:["thousand years","thousands of years"],m:10},{n:["million years","millions of years"],m:1e3},{n:["billion years","billions of years"],m:1e3},{n:["trillion years","trillions of years"],m:1e3}];e.exports=function(e){for(var n=e,r=0;r<t.length;r++){var a=t[r];if(n/=a.m,!t[r+1]||n/t[r+1].m<1)return Math.round(n)+" "+a.n[1===n?0:1]}}}]);</script></body>
+</html>
