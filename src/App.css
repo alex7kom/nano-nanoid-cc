@@ -1,0 +1,119 @@
+.App {
+  font-family: Helvetica, Arial, sans-serif;
+  width: 80%;
+  min-width: 300px;
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.App-title {
+  font-size: 34px;
+}
+
+.App-intro {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.App a {
+  color: #0c79e8;
+}
+
+.Form {
+  padding: 15px;
+  background: linear-gradient(to bottom, #e0f5fc 0%,#e0f5fc 40%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.Form-label {
+  display: block;
+  margin-bottom: 15px;
+  line-height: 1.7em;
+}
+
+.Form-input {
+  font-size: 16px;
+  padding: 7px;
+  border: 1px solid #cccccc;
+}
+
+.Form-alphabet {
+  width: 90%;
+}
+
+.Form-size {
+  text-align: right;
+  width: 50px;
+  margin-left: 5px;
+}
+
+.Form-speed {
+  text-align: right;
+  width: 70px;
+  margin-left: 5px;
+}
+
+.Form-error {
+  color: coral;
+  margin-bottom: 15px;
+}
+
+.Result {
+  padding: 15px;
+  font-size: 24px;
+  line-height: 40px;
+}
+
+.Result strong {
+  font-size: 34px;
+}
+
+.Example {
+  margin-top: 30px;
+}
+
+.Example-code {
+  background-color: #fdf6e3;
+  display: block;
+  overflow-x: scroll;
+  width: 100%;
+  padding: 15px;
+  white-space: nowrap;
+}
+
+.hl-op {
+  color: #859900;
+}
+
+.hl-func {
+  color: #268bd2;
+}
+
+.hl-comment {
+  color: #93a1a1;
+}
+
+.hl-keyword {
+  font-weight: bold;
+}
+
+.hl-str {
+  color: #2aa198;
+}
+
+.hl-num {
+  color: #d33682;
+}
+
+.Footer {
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.Footer-more-list {
+  padding-left: 30px;
+  line-height: 22px;
+}
+
+.Footer-credits {
+  margin-top: 50px;
+}

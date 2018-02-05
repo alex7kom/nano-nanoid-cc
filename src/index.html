@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>Nano ID Collision Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.ie.min.css" />
+    <![endif]-->
+    <style>
+      .github-fork-ribbon:before {
+        background-color: #090;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <a class="github-fork-ribbon" href="https://github.com/Alex7Kom/nano-nanoid-cc" title="Fork me on GitHub">Fork me on GitHub</a>
+    <div id="root">
+      <div class="App">
+        <header class="App-header">
+          <h1 class="App-title">
+            <a href="https://github.com/ai/nanoid">Nano ID</a> Collision Calculator</h1>
+        </header>
+        <div class="App-intro">
+          <p>Nano ID is a unique string ID generator for JavaScript and
+            <a href="https://github.com/ai/nanoid#other-programming-languages">other languages</a>.</p>
+          <p>As any other ID generator Nano ID has a probability of generating the same ID twice, i.e. producing a collision.</p>
+          <p>The purpose of this calculator is to find ID length for chosen alphabet safe enough to avoid collisions.</p>
+        </div>
+        <div class="Form">
+          <label for="Form-alphabet" class="Form-label">Alphabet:
+            <br>
+            <textarea class="Form-input Form-alphabet" id="Form-alphabet" type="text"></textarea>
+          </label>
+          <div class="Form-error" id="Form-error-alphabet"></div>
+          <label for="Form-size" class="Form-label">The length of ID:
+            <input class="Form-input Form-size" id="Form-size" type="text"> symbols</label>
+          <div class="Form-error" id="Form-error-size"></div>
+          <label for="Form-speed" class="Form-label">The speed of ID generation:
+            <input class="Form-input Form-speed" id="Form-speed" type="text"> IDs per hour</label>
+          <div class="Form-error" id="Form-error-speed"></div>
+        </div>
+        <div class="Result" id="Result-wrapper">
+          <strong id="Result"></strong> of work are needed in order to have a&nbsp;1% probability of at least one collision.</div>
+        <div class="Example">
+          <h3>Example of this usage</h3>
+          <code class="Example-code" id="Example-code"></code>
+        </div>
+        <div class="Footer">
+          <div>
+            <h3>Learn more</h3>
+            <ul class="Footer-more-list">
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Birthday_attack">Birthday attack</a>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier#Collisions">UUID#Collisions</a>
+              </li>
+            </ul>
+          </div>
+          <div class="Footer-credits">
+            <p>This calculator is made by
+              <a href="https://github.com/Alex7Kom">Alexey Komarov</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
