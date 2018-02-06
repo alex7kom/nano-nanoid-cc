@@ -17,7 +17,7 @@ function insecureRandom (length) {
   This is done purely for example demo to work in IE10 and lower
   */
 
-  return new Array(length).fill(0).map(function () {
+  return Array.apply(null, Array(length)).map(function () {
     return Math.floor(Math.random() * 256);
   });
 }
