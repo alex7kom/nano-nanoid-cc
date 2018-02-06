@@ -74,7 +74,7 @@
 .Example-code {
   background-color: #fdf6e3;
   display: block;
-  overflow-x: scroll;
+  overflow-x: auto;
   width: 100%;
   padding: 15px;
   white-space: nowrap;
