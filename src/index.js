@@ -1,3 +1,5 @@
+'use strict';
+
 require('./normalize.css');
 require('./App.css');
 
@@ -21,15 +23,15 @@ sizeInput.value = defaults.size;
 alphabetInput.value = defaults.alphabet;
 speedInput.value = 1000;
 
-['input', 'change'].forEach(function (evName) {
-  [sizeInput, alphabetInput, speedInput].forEach(function (elem) {
+['input', 'change'].forEach(function(evName) {
+  [sizeInput, alphabetInput, speedInput].forEach(function(elem) {
     elem.addEventListener(evName, calculate, false);
   });
 });
 
 calculate();
 
-function calculate () {
+function calculate() {
   var input = {
     size: Number(sizeInput.value),
     alphabet: alphabetInput.value,
@@ -42,7 +44,7 @@ function calculate () {
   validate(input);
 }
 
-function result (input) {
+function result(input) {
   resultWrapper.style.display = 'none';
 
   if (input.alphabet.length < 2) {
@@ -63,9 +65,7 @@ function result (input) {
 
   var probability = input.probability / 100;
   var generateForCollision = Math.sqrt(
-    2
-    * Math.pow(2, randomBits * input.size)
-    * Math.log(1 / (1 - probability))
+    2 * Math.pow(2, randomBits * input.size) * Math.log(1 / (1 - probability))
   );
 
   var speedPerSecond = input.speed / (60 * 60);
@@ -76,13 +76,10 @@ function result (input) {
   resultElement.innerHTML = '~' + timeToCollision;
 }
 
-function example (input) {
+function example(input) {
   exampleElement.style.display = 'none';
 
-  if (
-    input.alphabet.length < 2
-    || input.size <= 1
-  ) {
+  if (input.alphabet.length < 2 || input.size <= 1) {
     return;
   }
 
@@ -91,7 +88,7 @@ function example (input) {
   exampleElement.innerHTML = generateExample(input);
 }
 
-function validate (input) {
+function validate(input) {
   sizeError.innerHTML = '';
   alphabetError.innerHTML = '';
   speedError.innerHTML = '';
@@ -101,7 +98,8 @@ function validate (input) {
   }
 
   if (input.alphabet.length > 256) {
-    alphabetError.innerHTML = 'An alphabet with than 256 symbols is not secure due to algorithm limitations';
+    alphabetError.innerHTML =
+      'An alphabet with than 256 symbols is not secure due to algorithm limitations';
   }
 
   if (input.size < 2) {
