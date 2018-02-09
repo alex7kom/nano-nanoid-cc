@@ -106,6 +106,11 @@ function validate(input) {
       'An alphabet with than 256 symbols is not secure due to algorithm limitations';
   }
 
+  if (input.alphabet.length !== input.uniqAlphabet.length) {
+    alphabetError.innerHTML =
+      'An alphabet contains duplicated symbols. It will not help you to avoid collisions';
+  }
+
   if (input.size < 2) {
     sizeError.innerHTML = 'The length of the ID should be 2 or more';
   }
