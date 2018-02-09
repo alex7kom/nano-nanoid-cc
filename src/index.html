@@ -42,7 +42,12 @@
             <input class="Form-input Form-size" id="Form-size" type="number"> symbols</label>
           <div class="Form-error" id="Form-error-size"></div>
           <label for="Form-speed" class="Form-label">The speed of ID generation:
-            <input class="Form-input Form-speed" id="Form-speed" type="number"> IDs per hour</label>
+            <input class="Form-input Form-speed" id="Form-speed" type="number"> IDs per
+            <select class="Form-input" id="Form-speed-unit">
+              <option value="hour">hour</option>
+              <option value="second">second</option>
+            </select>
+          </label>
           <div class="Form-error" id="Form-error-speed"></div>
         </div>
         <div class="Result" id="Result-wrapper">
