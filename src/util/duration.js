@@ -1,3 +1,5 @@
+'use strict';
+
 var timeNames = [
   { n: ['second', 'seconds'], m: 1 },
   { n: ['minute', 'minutes'], m: 60 },
@@ -12,20 +14,17 @@ var timeNames = [
   { n: ['trillion years', 'trillions of years'], m: 1000 }
 ];
 
-function formatDuration (seconds) {
+function formatDuration(seconds) {
   var current = seconds;
   for (var index = 0; index < timeNames.length; index++) {
     var timeName = timeNames[index];
 
     current /= timeName.m;
 
-    if (
-      !timeNames[index + 1]
-      || (current / timeNames[index + 1].m) < 1
-    ) {
+    if (!timeNames[index + 1] || current / timeNames[index + 1].m < 1) {
       return Math.round(current) + ' ' + timeName.n[current === 1 ? 0 : 1];
     }
   }
-};
+}
 
 module.exports = formatDuration;

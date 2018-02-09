@@ -1,3 +1,5 @@
+'use strict';
+
 var format = require('nanoid/format');
 
 var defaults = require('../defaults');
@@ -6,38 +8,49 @@ var crypto = window.crypto || window.msCrypto;
 
 var random = crypto ? cryptoRandom : insecureRandom;
 
-function cryptoRandom (length) {
+function cryptoRandom(length) {
+  // eslint-disable-next-line no-undef
   return crypto.getRandomValues(new Uint8Array(length));
 }
 
-function insecureRandom (length) {
+function insecureRandom(length) {
   /*
   NEVER EVER USE THIS FOR REAL ID GENERATION
   Math.random() is not secure and this particular usage is naive
   This is done purely for example demo to work in IE10 and lower
   */
 
-  return Array.apply(null, Array(length)).map(function () {
+  return Array.apply(null, Array(length)).map(function() {
     return Math.floor(Math.random() * 256);
   });
 }
 
-function generateExample (input) {
+function generateExample(input) {
   var requireExample;
-  var lengthExample = input.size === defaults.size
-    ? ''
-    : input.size;
+  var lengthExample = input.size === defaults.size ? '' : input.size;
   var exampleId = format(random, input.alphabet, input.size);
 
   if (input.alphabet === defaults.alphabet) {
-    requireExample = "var nanoid = require('nanoid');<br />\
+    requireExample =
+      "var nanoid = require('nanoid');<br />\
 <br />\
-model.id = nanoid(" + lengthExample + "); // => \"" + exampleId + "\"";
+model.id = nanoid(" +
+      lengthExample +
+      '); // => "' +
+      exampleId +
+      '"';
   } else {
-    requireExample = "var generate = require('nanoid/generate');<br />\
-var alphabet = '" + input.alphabet + "';<br />\
+    requireExample =
+      "var generate = require('nanoid/generate');<br />\
+var alphabet = '" +
+      input.alphabet +
+      "';<br />\
 <br />\
-model.id = generate(alphabet, " + input.size + "); // => \"" + exampleId + "\"";
+model.id = generate(alphabet, " +
+      input.size +
+      '); // => "' +
+      exampleId +
+      '"';
   }
 
   requireExample = requireExample

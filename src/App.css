@@ -21,7 +21,12 @@
 
 .Form {
   padding: 15px;
-  background: linear-gradient(to bottom, #e0f5fc 0%,#e0f5fc 40%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: linear-gradient(
+    to bottom,
+    #e0f5fc 0%,
+    #e0f5fc 40%,
+    #ffffff 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .Form-label {
