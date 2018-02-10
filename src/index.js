@@ -39,7 +39,7 @@ function calculate() {
     size: Number(sizeInput.value),
     alphabet: alphabetInput.value,
     uniqAlphabet: alphabetInput.value.split('').reduce(function(res, letter) {
-      return res.includes(letter) ? res : res + letter;
+      return res.indexOf(letter) !== -1 ? res : res + letter;
     }, ''),
     speed:
       speedUnitInput.value === 'hour'
