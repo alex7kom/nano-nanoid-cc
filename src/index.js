@@ -10,6 +10,7 @@ var formatDuration = require('./util/duration');
 var sizeInput = document.getElementById('Form-size');
 var alphabetInput = document.getElementById('Form-alphabet');
 var speedInput = document.getElementById('Form-speed');
+var speedUnitInput = document.getElementById('Form-speed-unit');
 
 var sizeError = document.getElementById('Form-error-size');
 var alphabetError = document.getElementById('Form-error-alphabet');
@@ -24,7 +25,9 @@ alphabetInput.value = defaults.alphabet;
 speedInput.value = 1000;
 
 ['input', 'change'].forEach(function(evName) {
-  [sizeInput, alphabetInput, speedInput].forEach(function(elem) {
+  [sizeInput, alphabetInput, speedInput, speedUnitInput].forEach(function(
+    elem
+  ) {
     elem.addEventListener(evName, calculate, false);
   });
 });
@@ -35,7 +38,10 @@ function calculate() {
   var input = {
     size: Number(sizeInput.value),
     alphabet: alphabetInput.value,
-    speed: Number(speedInput.value),
+    speed:
+      speedUnitInput.value === 'hour'
+        ? Number(speedInput.value)
+        : Number(speedInput.value) * 60 * 60,
     probability: 1
   };
 
