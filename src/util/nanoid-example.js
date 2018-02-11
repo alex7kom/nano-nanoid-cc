@@ -30,6 +30,8 @@ function generateExample(input) {
   var lengthExample = input.size === defaults.size ? '' : input.size;
   var exampleId = format(random, input.alphabet, input.size);
 
+  var shownAlphabet = input.alphabet.replace('\\', '\\\\').replace("'", "\\'");
+
   if (input.alphabet === defaults.alphabet) {
     requireExample =
       "var nanoid = require('nanoid');<br />\
@@ -43,7 +45,7 @@ model.id = nanoid(" +
     requireExample =
       "var generate = require('nanoid/generate');<br />\
 var alphabet = '" +
-      input.alphabet +
+      shownAlphabet +
       "';<br />\
 <br />\
 model.id = generate(alphabet, " +
