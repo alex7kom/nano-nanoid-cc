@@ -34,34 +34,32 @@ function generateExample(input) {
 
   if (input.alphabet === defaults.alphabet) {
     requireExample =
-      "var nanoid = require('nanoid');<br />\
+      "<keyword>var</> nanoid <op>=</> \
+<func>require</>(<str>'nanoid'</>);\
 <br />\
-model.id = nanoid(" +
+<br />\
+model.id = <func>nanoid</>(<num>" +
       lengthExample +
-      '); // => "' +
-      exampleId +
-      '"';
+      '</>);';
   } else {
     requireExample =
-      "var generate = require('nanoid/generate');<br />\
-var alphabet = '" +
-      shownAlphabet +
-      "';<br />\
+      "<keyword>var</> generate <op>=</> \
+<func>require</>(<str>'nanoid/generate'</>);\
 <br />\
-model.id = generate(alphabet, " +
+<keyword>var</> alphabet <op>=</> <str>'" +
+      shownAlphabet +
+      "'</>;<br />\
+<br />\
+model.id = <func>generate</>(alphabet, <num>" +
       input.size +
-      '); // => "' +
-      exampleId +
-      '"';
+      '</>);';
   }
 
+  requireExample += ' <comment>// => "' + exampleId + '"</>';
+
   requireExample = requireExample
-    .replace(/ = /g, ' <span class="hl-op">=</span> ')
-    .replace(/\b(\S+?)\(/g, '<span class="hl-func">$1</span>(')
-    .replace(/(\/\/.+?)$/gm, '<span class="hl-comment">$1</span>')
-    .replace(/\b(var)\b/g, '<span class="hl-keyword">$1</span>')
-    .replace(/('.+?')/g, '<span class="hl-str">$1</span>')
-    .replace(/\b(\d+)\b/g, '<span class="hl-num">$1</span>');
+    .replace(/<(op|func|comment|keyword|str|num)>/g, '<span class="hl-$1">')
+    .replace(/<\/>/g, '</span>');
 
   return requireExample;
 }
