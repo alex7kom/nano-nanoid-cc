@@ -38,6 +38,9 @@ function calculate() {
   var input = {
     size: Number(sizeInput.value),
     alphabet: alphabetInput.value,
+    uniqAlphabet: alphabetInput.value.split('').reduce(function(res, letter) {
+      return res.indexOf(letter) !== -1 ? res : res + letter;
+    }, ''),
     speed:
       speedUnitInput.value === 'hour'
         ? Number(speedInput.value)
@@ -53,7 +56,7 @@ function calculate() {
 function result(input) {
   resultWrapper.style.display = 'none';
 
-  if (input.alphabet.length < 2) {
+  if (input.uniqAlphabet.length < 2) {
     return;
   }
 
@@ -67,7 +70,7 @@ function result(input) {
 
   resultWrapper.style.display = 'block';
 
-  var randomBits = Math.log(input.alphabet.length) / Math.LN2;
+  var randomBits = Math.log(input.uniqAlphabet.length) / Math.LN2;
 
   var probability = input.probability / 100;
   var generateForCollision = Math.sqrt(
@@ -85,7 +88,7 @@ function result(input) {
 function example(input) {
   exampleElement.style.display = 'none';
 
-  if (input.alphabet.length < 2 || input.size <= 1) {
+  if (input.uniqAlphabet.length < 2 || input.size <= 1) {
     return;
   }
 
@@ -99,13 +102,19 @@ function validate(input) {
   alphabetError.innerHTML = '';
   speedError.innerHTML = '';
 
-  if (input.alphabet.length < 2) {
-    alphabetError.innerHTML = 'The length of the alphabet should be 2 or more';
+  if (input.uniqAlphabet.length < 2) {
+    alphabetError.innerHTML =
+      'An alphabet should contain at least 2 <b>unique</b> symbols';
   }
 
   if (input.alphabet.length > 256) {
     alphabetError.innerHTML =
       'An alphabet with than 256 symbols is not secure due to algorithm limitations';
+  }
+
+  if (input.alphabet.length !== input.uniqAlphabet.length) {
+    alphabetError.innerHTML =
+      'An alphabet contains duplicated symbols. It will not help you to avoid collisions';
   }
 
   if (input.size < 2) {
