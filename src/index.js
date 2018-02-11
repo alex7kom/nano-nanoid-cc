@@ -104,7 +104,7 @@ function validate(input) {
 
   if (input.uniqAlphabet.length < 2) {
     alphabetError.innerHTML =
-      'An alphabet should contain at least 2 <b>unique</b> symbols';
+      'The alphabet should contain at least 2 <strong>unique</strong> symbols';
   }
 
   if (input.alphabet.length > 256) {
@@ -114,7 +114,7 @@ function validate(input) {
 
   if (input.alphabet.length !== input.uniqAlphabet.length) {
     alphabetError.innerHTML =
-      'An alphabet contains duplicated symbols. It will not help you to avoid collisions';
+      'The alphabet should not contain duplicate symbols';
   }
 
   if (input.size < 2) {
