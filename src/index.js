@@ -6,6 +6,7 @@ require('./App.css');
 var defaults = require('./defaults');
 var generateExample = require('./util/nanoid-example');
 var formatDuration = require('./util/duration');
+var calc = require('./util/calc');
 
 var sizeInput = document.getElementById('Form-size');
 var alphabetInput = document.getElementById('Form-alphabet');
@@ -70,19 +71,21 @@ function result(input) {
 
   resultWrapper.style.display = 'block';
 
-  var randomBits = Math.log(input.uniqAlphabet.length) / Math.LN2;
+  var randomBits = calc.getRandomBits(input.uniqAlphabet.length, input.size);
 
   var probability = input.probability / 100;
-  var generateForCollision = Math.sqrt(
-    2 * Math.pow(2, randomBits * input.size) * Math.log(1 / (1 - probability))
+  var generateForCollision = calc.getGenerateForCollision(
+    randomBits,
+    probability
   );
 
   var speedPerSecond = input.speed / (60 * 60);
-  var duration = Math.floor(generateForCollision / speedPerSecond);
+  var timeToCollision = calc.getTimeToCollision(
+    generateForCollision,
+    speedPerSecond
+  );
 
-  var timeToCollision = formatDuration(duration);
-
-  resultElement.innerHTML = timeToCollision;
+  resultElement.innerHTML = formatDuration(timeToCollision);
 }
 
 function example(input) {
