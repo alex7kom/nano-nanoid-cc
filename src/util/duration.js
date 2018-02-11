@@ -29,8 +29,10 @@ function formatDuration(seconds) {
     current /= timeName.m;
 
     if (!timeNames[index + 1] || current / timeNames[index + 1].m < 1) {
+      var roundedCurrent = Math.round(current);
+
       return (
-        '~' + Math.round(current) + ' ' + timeName.n[current === 1 ? 0 : 1]
+        '~' + roundedCurrent + ' ' + timeName.n[roundedCurrent === 1 ? 0 : 1]
       );
     }
   }
