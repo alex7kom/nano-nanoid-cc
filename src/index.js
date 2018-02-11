@@ -7,6 +7,7 @@ var defaults = require('./defaults');
 var generateExample = require('./util/nanoid-example');
 var formatDuration = require('./util/duration');
 var calc = require('./util/calc');
+var throttle = require('./util/throttle');
 
 var sizeInput = document.getElementById('Form-size');
 var alphabetInput = document.getElementById('Form-alphabet');
@@ -25,11 +26,13 @@ sizeInput.value = defaults.size;
 alphabetInput.value = defaults.alphabet;
 speedInput.value = 1000;
 
+var throttledCalculate = throttle(calculate, 150);
+
 ['input', 'change'].forEach(function(evName) {
   [sizeInput, alphabetInput, speedInput, speedUnitInput].forEach(function(
     elem
   ) {
-    elem.addEventListener(evName, calculate, false);
+    elem.addEventListener(evName, throttledCalculate, false);
   });
 });
 
