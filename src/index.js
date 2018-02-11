@@ -82,7 +82,7 @@ function result(input) {
 
   var timeToCollision = formatDuration(duration);
 
-  resultElement.innerHTML = '~' + timeToCollision;
+  resultElement.innerHTML = timeToCollision;
 }
 
 function example(input) {
