@@ -1,4 +1,4 @@
-# Nano ID Collision Calculator
+# Nano ID Collision Calculator [![Cult Of Martians][cult-img]][cult]
 
 > https://alex7kom.github.io/nano-nanoid-cc/
 
@@ -7,6 +7,9 @@
 As any other ID generator Nano ID has a probability of generating the same ID twice, i.e. producing a collision.
 
 The purpose of this calculator is to find ID length for chosen alphabet safe enough to avoid collisions.
+
+[cult-img]: http://cultofmartians.com/assets/badges/badge.svg
+[cult]: http://cultofmartians.com/tasks/id-collision.html
 
 ## Contributing
 
