@@ -7,6 +7,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 var StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
@@ -42,6 +43,7 @@ module.exports = {
     new ScriptExtHtmlWebpackPlugin({
       inline: ['bundle.js']
     }),
-    new StyleExtHtmlWebpackPlugin()
+    new StyleExtHtmlWebpackPlugin(),
+    new CopyWebpackPlugin([{ from: './src/favicon.ico', to: './' }])
   ]
 };
