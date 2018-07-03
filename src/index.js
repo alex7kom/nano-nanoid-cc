@@ -1,6 +1,5 @@
 'use strict';
 
-require('./normalize.css');
 require('./App.css');
 
 var defaults = require('./defaults');
