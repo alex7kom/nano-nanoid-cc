@@ -1,5 +1,7 @@
 'use strict';
 
+var initEasyLocation = require('easy-location');
+
 require('./normalize.css');
 require('./App.css');
 
@@ -22,9 +24,19 @@ var resultWrapper = document.getElementById('Result-wrapper');
 var resultElement = document.getElementById('Result');
 var exampleElement = document.getElementById('Example-code');
 
-sizeInput.value = defaults.size;
-alphabetInput.value = defaults.alphabet;
-speedInput.value = 1000;
+var defaultParams = {
+  size: defaults.size,
+  alphabet: defaults.alphabet,
+  speed: 1000,
+  speedUnit: 'hour'
+};
+
+var easyLocation = initEasyLocation({
+  onChange: function(data) {
+    setValues(data.search);
+    calculate();
+  }
+});
 
 var throttledCalculate = throttle(calculate, 150);
 
@@ -36,25 +48,47 @@ var throttledCalculate = throttle(calculate, 150);
   });
 });
 
-calculate();
-
 function calculate() {
+  var values = getValues();
+
+  if (easyLocation) {
+    easyLocation.reflect({
+      search: values
+    });
+  }
+
   var input = {
-    size: Number(sizeInput.value),
-    alphabet: alphabetInput.value,
-    uniqAlphabet: alphabetInput.value.split('').reduce(function(res, letter) {
+    size: values.size,
+    alphabet: values.alphabet,
+    uniqAlphabet: values.alphabet.split('').reduce(function(res, letter) {
       return res.indexOf(letter) === -1 ? res + letter : res;
     }, ''),
     speed:
-      speedUnitInput.value === 'hour'
-        ? Number(speedInput.value)
-        : Number(speedInput.value) * 60 * 60,
+      values.speedUnit === 'hour'
+        ? Number(values.speed)
+        : Number(values.speed) * 60 * 60,
     probability: 1
   };
 
   result(input);
   example(input);
   validate(input);
+}
+
+function setValues(values) {
+  sizeInput.value = values.size || defaultParams.size;
+  alphabetInput.value = values.alphabet || defaultParams.alphabet;
+  speedInput.value = values.speed || defaultParams.speed;
+  speedUnitInput.value = values.speedUnit || defaultParams.speedUnit;
+}
+
+function getValues() {
+  return {
+    size: Number(sizeInput.value),
+    alphabet: alphabetInput.value,
+    speed: speedInput.value,
+    speedUnit: speedUnitInput.value
+  };
 }
 
 function result(input) {
