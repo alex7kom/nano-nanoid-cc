@@ -8,24 +8,16 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 var StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  mode: 'production',
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: { importLoaders: 1 }
-            },
-            'postcss-loader'
-          ]
-        })
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
       }
     ]
   },
@@ -36,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new UglifyJsPlugin(),
-    new ExtractTextPlugin('styles.css'),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
