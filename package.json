@@ -16,7 +16,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "easy-location": "^1.0.0",
+    "easy-location": "^2.0.0",
     "nanoid": "^1.0.1"
   },
   "devDependencies": {
