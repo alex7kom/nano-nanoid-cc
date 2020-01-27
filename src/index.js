@@ -2,7 +2,6 @@
 
 var initEasyLocation = require('easy-location');
 
-require('./normalize.css');
 require('./App.css');
 
 var defaults = require('./defaults');
