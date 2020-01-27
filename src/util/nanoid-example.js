@@ -1,34 +1,13 @@
 'use strict';
 
-var format = require('nanoid/format');
+var generate = require('nanoid/non-secure/generate');
 
 var defaults = require('../defaults');
-
-var crypto = window.crypto || window.msCrypto;
-
-var random = crypto ? cryptoRandom : insecureRandom;
-
-function cryptoRandom(length) {
-  // eslint-disable-next-line no-undef
-  return crypto.getRandomValues(new Uint8Array(length));
-}
-
-function insecureRandom(length) {
-  /*
-  NEVER EVER USE THIS FOR REAL ID GENERATION
-  Math.random() is not secure and this particular usage is naive
-  This is done purely for example demo to work in IE10 and lower
-  */
-
-  return Array.apply(null, Array(length)).map(function() {
-    return Math.floor(Math.random() * 256);
-  });
-}
 
 function generateExample(input) {
   var requireExample;
   var lengthExample = input.size === defaults.size ? '' : input.size;
-  var exampleId = format(random, input.alphabet, input.size);
+  var exampleId = generate(input.alphabet, input.size);
 
   var shownAlphabet = input.alphabet.replace('\\', '\\\\').replace("'", "\\'");
 
