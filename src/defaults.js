@@ -1,10 +1,6 @@
 'use strict';
 
-var alphabet =
-  '_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var size = 21;
-
 module.exports = {
-  alphabet: alphabet,
-  size: size
+  alphabet: require('nanoid/url'),
+  size: 21
 };
