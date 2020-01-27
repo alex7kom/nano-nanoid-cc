@@ -44,9 +44,8 @@ module.exports = {
       }
     ],
     'max-depth': 'error',
-    'max-len': 'warn',
     'max-params': ['warn', 5],
-    'max-statements': 'warn',
+    'max-statements': ['warn', 20],
     'max-statements-per-line': 'error',
     'newline-before-return': 'error',
     'newline-per-chained-call': 'warn',
