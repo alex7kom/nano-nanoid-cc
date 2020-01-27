@@ -6,7 +6,13 @@
     "build": "webpack",
     "predeploy": "webpack",
     "deploy": "gh-pages -d dist",
-    "precommit": "pretty-quick --staged"
+    "lint": "eslint \"src/**/*.js\"",
+    "pretty": "pretty-quick"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run lint"
+    }
   },
   "license": "ISC",
   "dependencies": {
@@ -23,7 +29,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "gh-pages": "^1.1.0",
     "html-webpack-plugin": "^3.2.0",
-    "husky": "^0.14.3",
+    "husky": "^4.2.1",
     "mini-css-extract-plugin": "^0.9.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.19.1",
