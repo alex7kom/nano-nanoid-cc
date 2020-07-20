@@ -13,7 +13,7 @@ function generateExample(input) {
 
   if (input.alphabet === defaults.alphabet) {
     requireExample =
-      "<keyword>var</> nanoid <op>=</> \
+      "<keyword>var</> { nanoid } <op>=</> \
 <func>require</>(<str>'nanoid'</>);\
 <br />\
 <br />\
