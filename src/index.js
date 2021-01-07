@@ -12,6 +12,7 @@ var throttle = require('./util/throttle');
 
 var sizeInput = document.getElementById('Form-size');
 var alphabetInput = document.getElementById('Form-alphabet');
+var probabilityInput = document.getElementById('Form-probability');
 var speedInput = document.getElementById('Form-speed');
 var speedUnitInput = document.getElementById('Form-speed-unit');
 
@@ -21,11 +22,13 @@ var speedError = document.getElementById('Form-error-speed');
 
 var resultWrapper = document.getElementById('Result-wrapper');
 var resultElement = document.getElementById('Result');
+var probabilityElement = document.getElementById('probability');
 var exampleElement = document.getElementById('Example-code');
 
 var defaultParams = {
   size: defaults.size,
   alphabet: defaults.alphabet,
+  probability: defaults.probability,
   speed: 1000,
   speedUnit: 'hour'
 };
@@ -40,9 +43,13 @@ var easyLocation = initEasyLocation({
 var throttledCalculate = throttle(calculate, 150);
 
 ['input', 'change'].forEach(function(evName) {
-  [sizeInput, alphabetInput, speedInput, speedUnitInput].forEach(function(
-    elem
-  ) {
+  [
+    sizeInput,
+    alphabetInput,
+    probabilityInput,
+    speedInput,
+    speedUnitInput
+  ].forEach(function(elem) {
     elem.addEventListener(evName, throttledCalculate, false);
   });
 });
@@ -66,7 +73,7 @@ function calculate() {
       values.speedUnit === 'hour'
         ? Number(values.speed)
         : Number(values.speed) * 60 * 60,
-    probability: 1
+    probability: values.probability
   };
 
   result(input);
@@ -77,6 +84,7 @@ function calculate() {
 function setValues(values) {
   sizeInput.value = values.size || defaultParams.size;
   alphabetInput.value = values.alphabet || defaultParams.alphabet;
+  probabilityInput.value = values.probability || defaultParams.probability;
   speedInput.value = values.speed || defaultParams.speed;
   speedUnitInput.value = values.speedUnit || defaultParams.speedUnit;
 }
@@ -85,6 +93,7 @@ function getValues() {
   return {
     size: Number(sizeInput.value),
     alphabet: alphabetInput.value,
+    probability: probabilityInput.value,
     speed: speedInput.value,
     speedUnit: speedUnitInput.value
   };
@@ -122,6 +131,7 @@ function result(input) {
   );
 
   resultElement.innerHTML = formatDuration(timeToCollision);
+  probabilityElement.innerHTML = probability * 100;
 }
 
 function example(input) {
